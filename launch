@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# DWL startup script
+
+dbus-daemon --session &
+eval $(dbus-launch &) && export DBUS_SESSION_BUS_ADDRESS
+exec ssh-agent zsh &
+swww-daemon
+wl-paste --type text --watch cliphist store
+wl-paste --type image --watch cliphist store
+otd-daemon &
+emacs --daemon
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+dunst &
