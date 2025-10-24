@@ -168,7 +168,7 @@ static const Key keys[] = {
 
   /* Applications */
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_x,          spawn,          {.v = menucmd} },
-	{ MODKEY,                    XKB_KEY_x, XKB_KEY_Return,     spawn,          {.v = termcmd} },
+	{ MODKEY,                    -1, XKB_KEY_Return,            spawn,          {.v = termcmd} },
   { MODKEY,                    XKB_KEY_x, XKB_KEY_b,          spawn,          {.v = browser} },
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_e,          spawn,          {.v = emacs} },
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_f,          spawn,          {.v = filemanager} },
