@@ -34,12 +34,20 @@ static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 /* logging */
 static int log_level = WLR_ERROR;
 
+/* appicons */
+/* NOTE: set to 0 to set to default (whitespace) */
+static char outer_separator_beg      = '[';
+static char outer_separator_end      = ']';
+static char inner_separator          = ' ';
+static unsigned truncate_icons_after = 2; /* will default to 1, that is the min */
+static char truncate_symbol[]         = "...";
+
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	/* app_id             title       tags mask     isfloating   monitor */
+	/* app_id             title       tags mask     isfloating   monitor  appicon*/
 	/* examples: */
-	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
-	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1,      NULL }, /* Start on currently visible tags floating, not tiled */
+	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1,      "" }, /* Start on ONLY tag "9" */
 };
 
 /* layout(s) */
