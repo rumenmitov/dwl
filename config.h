@@ -17,9 +17,9 @@ static const unsigned int gappov           = 5; /* vert outer gap between window
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
 static const char *fonts[]                 = {
-    "Hack Nerd Font:size=15", 
-    "JetBrains Mono:size=15",
-    "Noto Color Emoji:size=15",
+  "Hack Nerd Font:size=15", 
+  "JetBrains Mono:size=15",
+  "Noto Color Emoji:size=15",
 };
 static const float rootcolor[]             = COLOR(0x222222ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
@@ -38,12 +38,28 @@ static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 /* logging */
 static int log_level = WLR_ERROR;
 
+/* appicons */
+/* NOTE: set to 0 to set to default (whitespace) */
+static char outer_separator_beg      = '[';
+static char outer_separator_end      = ']';
+static char inner_separator          = ' ';
+static unsigned truncate_icons_after = 2; /* will default to 1, that is the min */
+static char truncate_symbol[]         = "...";
+
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	/* app_id             title       tags mask     isfloating   monitor */
+	/* app_id             title       tags mask     isfloating   monitor  appicon*/
 	/* examples: */
-	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
-	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+	{ "com.mitchellh.ghostty", NULL,       0,            0,           -1,   "👻" },
+	{ "zen",                   NULL,       0,            0,           -1,   "🌐" }, 
+	{ "com.github.flxzt.rnote",NULL,       0,            0,           -1,   "󱦹" }, 
+	{ "com.nextcloud.desktopclient.nextcloud",NULL,0,    0,           -1,   "" }, 
+	{ "org.keepassxc.KeePassXC",NULL,      0,            0,           -1,   "🔑" }, 
+	{ "chromium",              NULL,       0,            0,           -1,   "" }, 
+	{ "gimp",                  NULL,       0,            0,           -1,   "" }, 
+	{ "emacs",                 NULL,       0,            0,           -1,   "" }, 
+	{ "org.kde.okular",        NULL,       0,            0,           -1,   "" }, 
+	{ "org.gnome.Nautilus",    NULL,       0,            0,           -1,   "📁" }, 
 };
 
 /* layout(s) */
