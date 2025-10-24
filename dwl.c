@@ -1639,9 +1639,10 @@ drawbar(Monitor *m)
 				urg & 1 << i);
 		x += w;
 	}
-	w = TEXTW(m, m->ltsymbol);
-	drwl_setscheme(m->drw, colors[SchemeNorm]);
-	x = drwl_text(m->drw, x, 0, w, m->b.height, m->lrpad / 2, m->ltsymbol, 0);
+  // INFO I don't want the layout displayed in the bar.
+	// w = TEXTW(m, m->ltsymbol);
+	// drwl_setscheme(m->drw, colors[SchemeNorm]);
+	// x = drwl_text(m->drw, x, 0, w, m->b.height, m->lrpad / 2, m->ltsymbol, 0);
 
 	if ((w = m->b.width - tw - x) > m->b.height) {
 		if (c) {
