@@ -168,9 +168,9 @@ static const char *brightnessdowncmd[] = { "brightnessctl", "s", "5%-", NULL };
 static const char *volumeupcmd[] = { "pamixer", "-i", "10", NULL };
 static const char *volumedowncmd[] = { "pamixer", "-d", "10", NULL };
 static const char *mutecmd[] = { "pamixer", "-t", NULL };
+static const char *screenshotcmd[] = { "shotman", "--capture", "region", "--copy", NULL };
 
 /* scripts */
-static const char screenshot[] = "~/.local/share/scripts/screenshot.sh";
 static const char clearclip[] = "~/.local/share/scripts/clear-clipboard.sh";
 static const char powermenu[] = "~/.local/share/scripts/power-menu.sh";
 static const char emoji[] = "~/.local/share/scripts/emojis.sh";
@@ -195,7 +195,7 @@ static const Key keys[] = {
 	{ 0,                         -1, XKB_KEY_XF86AudioRaiseVolume,  spawn,       {.v = volumeupcmd} },
 	{ 0,                         -1, XKB_KEY_XF86AudioLowerVolume,  spawn,       {.v = volumedowncmd} },
 	{ 0,                         -1, XKB_KEY_XF86AudioMute,         spawn,       {.v = mutecmd} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_S,                     spawn,       SHCMD(screenshot) },
+	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_S,                     spawn,       {.v = screenshotcmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_X,                     spawn,       SHCMD(clearclip) },
 
   /* Popup Menus */
