@@ -3,8 +3,7 @@
 # DWL startup script
 
 dbus-daemon --session &
-eval $(dbus-launch &) && export DBUS_SESSION_BUS_ADDRESS
-exec ssh-agent zsh &
+eval $(dbus-launch &) && export DBUS_SESSION_BUS_ADDRESS &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
 wl-paste --type text --watch cliphist store &
@@ -12,3 +11,4 @@ wl-paste --type image --watch cliphist store &
 swww-daemon &
 emacs --daemon
 otd-daemon &
+exec ~/.config/dwl/scripts/screenshare-fix.sh &
