@@ -51,7 +51,7 @@ static char truncate_symbol[]         = "...";
 static const Rule rules[] = {
 	/* app_id             title       tags mask     isfloating   monitor  appicon*/
 	/* examples: */
-	{ "com.mitchellh.ghostty", NULL,       0,            0,           -1,   "👻" },
+	{ "foot",                  NULL,       0,            0,           -1,   "👻" },
 	{ "zen",                   NULL,       0,            0,           -1,   "🌐" }, 
 	{ "com.github.flxzt.rnote",NULL,       0,            0,           -1,   "󱦹" }, 
 	{ "com.nextcloud.desktopclient.nextcloud",NULL,0,    0,           -1,   "" }, 
@@ -159,9 +159,9 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "ghostty", NULL };
+static const char *termcmd[] = { "foot", NULL };
 static const char *browser[] = { "zen-browser", NULL };
-static const char *menucmd[] = { "rofi", "-i", "-show-icons", "-modes", "drun", "-show", "drun", NULL };
+static const char *menucmd[] = { "wofi", "--allow-images", "--show", "drun", NULL };
 static const char *emacs[] = { "emacsclient", "-c", NULL };
 static const char *filemanager[] = { "thunar", NULL };
 static const char *brightnessupcmd[] = { "brightnessctl", "s", "5%+", NULL };
