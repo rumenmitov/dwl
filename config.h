@@ -181,6 +181,7 @@ static const char emoji[] = "~/.local/share/scripts/emojis.sh";
 static const char math[] = "~/.local/share/scripts/math-symbols.sh";
 static const char clipboard[] = "~/.local/share/scripts/clipboard.sh";
 static const char wallpaper[] = "~/.local/share/scripts/wallpaper.sh";
+static const char live_wallpaper[] = "~/.local/share/scripts/live-wallpaper.sh";
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -209,6 +210,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_E,                     spawn,          SHCMD(math) },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_V,                     spawn,          SHCMD(clipboard) },
 	{ MODKEY,                    -1, XKB_KEY_w,                     spawn,          SHCMD(wallpaper) },
+	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_W,                     spawn,          SHCMD(live_wallpaper) },
 
   /* System */
 	{ MODKEY,                    -1, XKB_KEY_b,          togglebar,      {0} },
