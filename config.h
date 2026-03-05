@@ -49,18 +49,19 @@ static char truncate_symbol[]         = "...";
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	/* app_id             title       tags mask     isfloating   monitor  appicon*/
+	/* app_id             title       tags mask     isfloating   monitor  appicon scratchkey*/
 	/* examples: */
-	{ "foot",                  NULL,       0,            0,           -1,   "👻" },
-	{ "zen",                   NULL,       0,            0,           -1,   "🌐" }, 
-	{ "com.github.flxzt.rnote",NULL,       0,            0,           -1,   "󱦹" }, 
-	{ "com.nextcloud.desktopclient.nextcloud",NULL,0,    0,           -1,   "" }, 
-	{ "org.keepassxc.KeePassXC",NULL,      0,            0,           -1,   "🔑" }, 
-	{ "chromium",              NULL,       0,            0,           -1,   "" }, 
-	{ "gimp",                  NULL,       0,            0,           -1,   "" }, 
-	{ "emacs",                 NULL,       0,            0,           -1,   "" }, 
-	{ "org.kde.okular",        NULL,       0,            0,           -1,   "" }, 
-	{ "org.gnome.Nautilus",    NULL,       0,            0,           -1,   "📁" }, 
+	{ "foot",                  NULL,       0,            0,           -1,   "👻", 0 },
+	{ NULL,                    "scratch",  0,            1,           -1,   "👻", 's' },
+	{ "zen",                   NULL,       0,            0,           -1,   "🌐", 0 }, 
+	{ "com.github.flxzt.rnote",NULL,       0,            0,           -1,   "󱦹",  0 }, 
+	{ "com.nextcloud.desktopclient.nextcloud",NULL,0,    0,           -1,   "",  0 }, 
+	{ "org.keepassxc.KeePassXC",NULL,      0,            0,           -1,   "🔑", 0 }, 
+	{ "chromium",              NULL,       0,            0,           -1,   "",  0 }, 
+	{ "gimp",                  NULL,       0,            0,           -1,   "",  0 }, 
+	{ "emacs",                 NULL,       0,            0,           -1,   "",  0 }, 
+	{ "org.kde.okular",        NULL,       0,            0,           -1,   "",  0 }, 
+	{ "org.gnome.Nautilus",    NULL,       0,            0,           -1,   "📁", 0 }, 
 };
 
 /* layout(s) */
@@ -171,6 +172,9 @@ static const char *volumedowncmd[] = { "pamixer", "-d", "10", NULL };
 static const char *mutecmd[] = { "pamixer", "-t", NULL };
 static const char *screenshotcmd[] = { "shotman", "--capture", "region", "--copy", NULL };
 
+/* named scratchpads - First arg only serves to match against key in rules*/
+static const char *scratchcmd[] = { "s", "foot", "-T", "scratch", NULL };
+
 /* scripts */
 static const char clearclip[] = "~/.local/share/scripts/clear-clipboard.sh";
 static const char powermenu[] = "~/.local/share/scripts/power-menu.sh";
@@ -186,6 +190,7 @@ static const Key keys[] = {
   /* Applications */
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_x,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    -1, XKB_KEY_Return,            spawn,          {.v = termcmd} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_Return,            togglescratch,  {.v = scratchcmd} },
   { MODKEY,                    XKB_KEY_x, XKB_KEY_b,          spawn,          {.v = browser} },
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_e,          spawn,          {.v = emacs} },
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_f,          spawn,          {.v = filemanager} },

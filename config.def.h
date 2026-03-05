@@ -45,10 +45,11 @@ static char truncate_symbol[]         = "...";
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	/* app_id             title       tags mask     isfloating   monitor  appicon*/
+	/* app_id             title       tags mask     isfloating   monitor  appicon scratchkey*/
 	/* examples: */
-	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1,      NULL }, /* Start on currently visible tags floating, not tiled */
-	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1,      "" }, /* Start on ONLY tag "9" */
+	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1,      NULL, 0 }, /* Start on currently visible tags floating, not tiled */
+	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1,      "",  0 }, /* Start on ONLY tag "9" */
+	{ NULL,               "scratchpad", 0,            1,           -1,    NULL, 's' },
     /* default/example rule: can be changed but cannot be eliminated; at least one rule must exist */
 };
 
@@ -146,11 +147,17 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "wmenu-run", NULL };
 
+/* named scratchpads - First arg only serves to match against key in rules*/
+static const char *scratchpadcmd[] = { "s", "alacritty", "-t", "scratchpad", NULL };
+
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  chain,  key                 function        argument */
 	{ MODKEY,                    -1, XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_Return,     spawn,          {.v = termcmd} },
+	{ MODKEY,                    -1, XKB_KEY_grave,      togglescratch,  {.v = scratchpadcmd } },
+	// { MODKEY,                 -1, XKB_KEY_grave,      focusortogglescratch, {.v = scratchpadcmd } },
+	// { MODKEY,                 -1, XKB_KEY_grave,      focusortogglematchingscratch, {.v = scratchpadcmd } },
 	{ MODKEY,                    -1, XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    -1, XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    -1, XKB_KEY_k,          focusstack,     {.i = -1} },
