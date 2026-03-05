@@ -321,7 +321,7 @@ static void createtablet(struct wlr_input_device *device);
 static void cursorconstrain(struct wlr_pointer_constraint_v1 *constraint);
 static void cursorframe(struct wl_listener *listener, void *data);
 static void cursorwarptohint(void);
-static void defaultgaps(const Arg *arg);
+[[maybe_unused]] static void defaultgaps(const Arg *arg);
 static void destroydecoration(struct wl_listener *listener, void *data);
 static void destroydragicon(struct wl_listener *listener, void *data);
 static void destroyidleinhibitor(struct wl_listener *listener, void *data);
@@ -338,26 +338,26 @@ static void destroytablettool(struct wl_listener *listener, void *data);
 static Monitor *dirtomon(enum wlr_direction dir);
 static void remove_outer_separators(char **str);
 static void appiconsappend(char **str, const char *appicon, size_t new_size);
-static void applyappicon(char *tag_icons[], int *icons_per_tag, const Client *c);
+static void applyappicon(char *tag_icons[], unsigned *icons_per_tag, const Client *c);
 static void drawbar(Monitor *m);
 static void drawbars(void);
 static void focusclient(Client *c, int lift);
 static void focusmon(const Arg *arg);
-static void focusortogglematchingscratch(const Arg *arg);
-static void focusortogglescratch(const Arg *arg);
+[[maybe_unused]] static void focusortogglematchingscratch(const Arg *arg);
+[[maybe_unused]] static void focusortogglescratch(const Arg *arg);
 static void focusstack(const Arg *arg);
 static Client *focustop(Monitor *m);
 static void fullscreennotify(struct wl_listener *listener, void *data);
 static void gpureset(struct wl_listener *listener, void *data);
 static void handlesig(int signo);
-static void incnmaster(const Arg *arg);
-static void incgaps(const Arg *arg);
-static void incigaps(const Arg *arg);
-static void incihgaps(const Arg *arg);
-static void incivgaps(const Arg *arg);
-static void incogaps(const Arg *arg);
-static void incohgaps(const Arg *arg);
-static void incovgaps(const Arg *arg);
+[[maybe_unused]] static void incnmaster(const Arg *arg);
+[[maybe_unused]] static void incgaps(const Arg *arg);
+[[maybe_unused]] static void incigaps(const Arg *arg);
+[[maybe_unused]] static void incihgaps(const Arg *arg);
+[[maybe_unused]] static void incivgaps(const Arg *arg);
+[[maybe_unused]] static void incogaps(const Arg *arg);
+[[maybe_unused]] static void incohgaps(const Arg *arg);
+[[maybe_unused]] static void incovgaps(const Arg *arg);
 static void inputdevice(struct wl_listener *listener, void *data);
 static int keybinding(uint32_t mods, xkb_keysym_t sym);
 static void keypress(struct wl_listener *listener, void *data);
@@ -413,7 +413,7 @@ static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglefullscreen(const Arg *arg);
 static void togglescratch(const Arg *arg);
-static void togglegaps(const Arg *arg);
+[[maybe_unused]] static void togglegaps(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unlocksession(struct wl_listener *listener, void *data);
@@ -579,11 +579,6 @@ applybounds(Client *c, struct wlr_box *bbox)
 void
 applyrules(Client *c)
 {
-  outer_separator_beg = outer_separator_beg ? outer_separator_beg : ' ';
-  outer_separator_end = outer_separator_end ? outer_separator_end : ' ';
-  inner_separator = inner_separator ? inner_separator : ' ';
-  truncate_icons_after = truncate_icons_after > 0 ? truncate_icons_after : 1;
-
 	/* rule matching */
 	const char *appid, *title;
 	uint32_t newtags = 0;
@@ -595,6 +590,11 @@ applyrules(Client *c)
 	int newx;
 	int newy;
 	int apply_resize = 0;
+
+  outer_separator_beg = outer_separator_beg ? outer_separator_beg : ' ';
+  outer_separator_end = outer_separator_end ? outer_separator_end : ' ';
+  inner_separator = inner_separator ? inner_separator : ' ';
+  truncate_icons_after = truncate_icons_after > 0 ? truncate_icons_after : 1;
 
 	appid = client_get_appid(c);
 	title = client_get_title(c);
@@ -994,9 +994,9 @@ cleanupmon(struct wl_listener *listener, void *data)
 	wlr_output_layout_remove(output_layout, m->wlr_output);
 	wlr_scene_output_destroy(m->scene_output);
 
-  for (int i = 0; i < LENGTH(tags); i++) {
-      if (m->tag_icons[i]) free(m->tag_icons[i]);
-      m->tag_icons[i] = NULL;
+  for (unsigned long j = 0; j < LENGTH(tags); j++) {
+      if (m->tag_icons[j]) free(m->tag_icons[j]);
+      m->tag_icons[j] = NULL;
   }
 
   if (m->tag_icons) {
@@ -1338,8 +1338,8 @@ createmon(struct wl_listener *listener, void *data)
 
       m->tag_icons = (char**) malloc(LENGTH(tags) * sizeof(char*));
       if (m->tag_icons == NULL) perror("dwm: malloc()");
-      for (int i = 0; i < LENGTH(tags); i++) {
-        m->tag_icons[i] = NULL;
+      for (unsigned long j = 0; j < LENGTH(tags); j++) {
+        m->tag_icons[j] = NULL;
       }
 
 			wlr_output_state_set_scale(&state, r->scale);
@@ -1735,16 +1735,20 @@ dirtomon(enum wlr_direction dir)
 void
 remove_outer_separators(char **str)
 {
-    size_t clean_tag_name_len = strlen(*str) - 2;
+    size_t clean_tag_name_len;
+    char *temp_tag_name;
+    char *clean_tag_name_beg;
 
-    char *temp_tag_name = (char*) 
+    clean_tag_name_len = strlen(*str) - 2;
+
+    temp_tag_name = (char*) 
         malloc(clean_tag_name_len + 1);
 
     if (temp_tag_name == NULL) perror("dwm: malloc()");
 
     memset(temp_tag_name, 0, clean_tag_name_len + 1);
 
-    char *clean_tag_name_beg = *str + 1;
+    clean_tag_name_beg = *str + 1;
     strncpy(temp_tag_name, 
             clean_tag_name_beg, 
             clean_tag_name_len);
@@ -1778,8 +1782,14 @@ appiconsappend(char **str, const char *appicon, size_t new_size)
 }
 
 void
-applyappicon(char *tag_icons[], int *icons_per_tag, const Client *c)
+applyappicon(char *tag_icons[], unsigned *icons_per_tag, const Client *c)
 {
+    char *icon;
+    size_t new_size;
+
+    const size_t outer_separators_size = 2;
+    const size_t inner_separator_size = 1;
+
     for (unsigned t = 1, i = 0;
             i < LENGTH(tags);
             t <<= 1, i++) 
@@ -1789,7 +1799,7 @@ applyappicon(char *tag_icons[], int *icons_per_tag, const Client *c)
                 if (tag_icons[i]) free(tag_icons[i]);
                 tag_icons[i] = strndup(c->appicon, strlen(c->appicon));
           } else {
-                char *icon = NULL;
+                icon = NULL;
                 if (icons_per_tag[i] < truncate_icons_after)
                     icon = c->appicon;
                 else if (icons_per_tag[i] == truncate_icons_after)
@@ -1805,10 +1815,7 @@ applyappicon(char *tag_icons[], int *icons_per_tag, const Client *c)
                     remove_outer_separators(&tag_icons[i]);
                 }
 
-                size_t outer_separators_size = 2;
-                size_t inner_separator_size = 1;
-
-                size_t new_size = strlen(tag_icons[i])
+                new_size = strlen(tag_icons[i])
                     + outer_separators_size 
                     + inner_separator_size
                     + strlen(icon)
@@ -1832,6 +1839,7 @@ drawbar(Monitor *m)
 	uint32_t i, occ = 0, urg = 0;
 	Client *c;
 	Buffer *buf;
+  unsigned icons_per_tag[LENGTH(tags)];
 
 	if (!m->scene_buffer->node.enabled)
 		return;
@@ -1845,12 +1853,11 @@ drawbar(Monitor *m)
 		drwl_text(m->drw, m->b.width - tw, 0, tw, m->b.height, 0, stext, 0);
 	}
 
-  int icons_per_tag[LENGTH(tags)];
   memset(icons_per_tag, 0, LENGTH(tags) * sizeof(int));
 
-  for (int i = 0; i < LENGTH(tags); i++) {
+  for (unsigned long j = 0; j < LENGTH(tags); j++) {
     /* set each tag to default value */
-    m->tag_icons[i] = strndup(tags[i], strlen(tags[i]));
+    m->tag_icons[j] = strndup(tags[j], strlen(tags[j]));
   }
 
 	wl_list_for_each(c, &clients, link) {
