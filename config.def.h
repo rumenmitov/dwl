@@ -21,6 +21,7 @@ static const char *fonts[]                 = {"monospace:size=10"};
 static const float rootcolor[]             = COLOR(0x222222ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
+static const int respect_monitor_reserved_area = 0;  /* 1 to monitor center while respecting the monitor's reserved area, 0 to monitor center */
 
 static uint32_t colors[][3]                = {
 	/*               fg          bg          border    */
@@ -45,11 +46,11 @@ static char truncate_symbol[]         = "...";
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	/* app_id             title       tags mask     isfloating   monitor  appicon scratchkey*/
+	/* app_id             title       tags mask     isfloating   monitor  x   y  width   height  appicon   scratchkey*/
 	/* examples: */
-	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1,      NULL, 0 }, /* Start on currently visible tags floating, not tiled */
-	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1,      "",  0 }, /* Start on ONLY tag "9" */
-	{ NULL,               "scratchpad", 0,            1,           -1,    NULL, 's' },
+	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1,     -1, -1, -1, -1, NULL, 0 }, /* Start on currently visible tags floating, not tiled */
+	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1,     -1, -1, -1, -1, "",  0 }, /* Start on ONLY tag "9" */
+	{ NULL,               "scratchpad", 0,            1,           -1,   -1, -1, -1, -1, NULL, 's' },
     /* default/example rule: can be changed but cannot be eliminated; at least one rule must exist */
 };
 

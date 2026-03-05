@@ -25,6 +25,7 @@ static const char *fonts[]                 = {
 static const float rootcolor[]             = COLOR(0x222222ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
+static const int respect_monitor_reserved_area = 0;  /* 1 to monitor center while respecting the monitor's reserved area, 0 to monitor center */
 
 static uint32_t colors[][3]                = {
 	/*               fg          bg          border    */
@@ -49,19 +50,17 @@ static char truncate_symbol[]         = "...";
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	/* app_id             title       tags mask     isfloating   monitor  appicon scratchkey*/
-	/* examples: */
-	{ "foot",                  NULL,       0,            0,           -1,   "👻", 0 },
-	{ NULL,                    "scratch",  0,            1,           -1,   "👻", 's' },
-	{ "zen",                   NULL,       0,            0,           -1,   "🌐", 0 }, 
-	{ "com.github.flxzt.rnote",NULL,       0,            0,           -1,   "󱦹",  0 }, 
-	{ "com.nextcloud.desktopclient.nextcloud",NULL,0,    0,           -1,   "",  0 }, 
-	{ "org.keepassxc.KeePassXC",NULL,      0,            0,           -1,   "🔑", 0 }, 
-	{ "chromium",              NULL,       0,            0,           -1,   "",  0 }, 
-	{ "gimp",                  NULL,       0,            0,           -1,   "",  0 }, 
-	{ "emacs",                 NULL,       0,            0,           -1,   "",  0 }, 
-	{ "org.kde.okular",        NULL,       0,            0,           -1,   "",  0 }, 
-	{ "org.gnome.Nautilus",    NULL,       0,            0,           -1,   "📁", 0 }, 
+	{ "foot", NULL, 0, 0, -1, -1, -1, -1, -1, "👻", 0 },
+	{ NULL, "scratch", 0, 1, -1, 100, 50, 1200, 800, "👻", 's' },
+	{ "zen", NULL, 0, 0, -1, -1, -1, -1, -1, "🌐", 0 }, 
+	{ "com.github.flxzt.rnote", NULL, 0, 0, -1,-1, -1, -1, -1, "󱦹", 0 }, 
+	{ "com.nextcloud.desktopclient.nextcloud",NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
+	{ "org.keepassxc.KeePassXC", NULL, 0, 0, -1, -1, -1, -1, -1, "🔑", 0 }, 
+	{ "chromium", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
+	{ "gimp", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
+	{ "emacs", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
+	{ "org.kde.okular", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
+	{ "org.gnome.Nautilus", NULL, 0, 0, -1, -1, -1, -1, -1, "📁", 0 }, 
 };
 
 /* layout(s) */
