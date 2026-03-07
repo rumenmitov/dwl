@@ -52,6 +52,7 @@ static char truncate_symbol[]         = "...";
 static const Rule rules[] = {
 	{ "ghostty", NULL, 0, 0, -1, -1, -1, -1, -1, "👻", 0 },
 	{ NULL, "scratch", 0, 1, -1, 100, 50, 1200, 800, "👻", 's' },
+	{ NULL, "clipboard", 0, 1, -1, 100, 50, 1200, 800, "📎", 'c' },
 	{ "zen", NULL, 0, 0, -1, -1, -1, -1, -1, "🌐", 0 }, 
 	{ "com.github.flxzt.rnote", NULL, 0, 0, -1,-1, -1, -1, -1, "󱦹", 0 }, 
 	{ "com.nextcloud.desktopclient.nextcloud",NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
@@ -170,16 +171,16 @@ static const char *volumeupcmd[] = { "pamixer", "-i", "10", NULL };
 static const char *volumedowncmd[] = { "pamixer", "-d", "10", NULL };
 static const char *mutecmd[] = { "pamixer", "-t", NULL };
 static const char *screenshotcmd[] = { "shotman", "--capture", "region", "--copy", NULL };
+static const char *clearclipcmd[] = { "clipse", "--clear-all", NULL };
 
 /* named scratchpads - First arg only serves to match against key in rules*/
 static const char *scratchcmd[] = { "s", "ghostty", "--title=scratch", NULL };
+static const char *clipboardcmd[] = { "c", "ghostty", "--title=clipboard", "-e", "clipse", NULL };
 
 /* scripts */
-static const char clearclip[] = "~/.local/share/scripts/clear-clipboard.sh";
 static const char powermenu[] = "~/.local/share/scripts/power-menu.sh";
 static const char emoji[] = "~/.local/share/scripts/emojis.sh";
 static const char math[] = "~/.local/share/scripts/math-symbols.sh";
-static const char clipboard[] = "~/.local/share/scripts/clipboard.sh";
 static const char wallpaper[] = "~/.local/share/scripts/wallpaper.sh";
 static const char live_wallpaper[] = "~/.local/share/scripts/live-wallpaper.sh";
 
@@ -202,13 +203,13 @@ static const Key keys[] = {
 	{ 0,                         -1, XKB_KEY_XF86AudioLowerVolume,  spawn,       {.v = volumedowncmd} },
 	{ 0,                         -1, XKB_KEY_XF86AudioMute,         spawn,       {.v = mutecmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_S,                     spawn,       {.v = screenshotcmd} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_X,                     spawn,       SHCMD(clearclip) },
+	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_X,                     spawn,       { .v = clearclipcmd} },
 
   /* Popup Menus */
 	{ MODKEY,                    -1, XKB_KEY_q,                     spawn,          SHCMD(powermenu) },
 	{ MODKEY,                    -1, XKB_KEY_e,                     spawn,          SHCMD(emoji) },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_E,                     spawn,          SHCMD(math) },
-	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_V,                     spawn,          SHCMD(clipboard) },
+	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_V,                     togglescratch,  { .v = clipboardcmd} },
 	{ MODKEY,                    -1, XKB_KEY_w,                     spawn,          SHCMD(wallpaper) },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_W,                     spawn,          SHCMD(live_wallpaper) },
 
