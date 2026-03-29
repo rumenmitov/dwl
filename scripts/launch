@@ -7,7 +7,7 @@ eval $(dbus-launch &) && export DBUS_SESSION_BUS_ADDRESS &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
 clipse -listen
-swww-daemon &
+awww-daemon &
 emacs --daemon
 otd-daemon &
 exec ~/.config/dwl/scripts/screenshare-fix.sh &
