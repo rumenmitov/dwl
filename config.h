@@ -52,7 +52,7 @@ static char truncate_symbol[]         = "...";
 static const Rule rules[] = {
 	{ "ghostty", NULL, 0, 0, -1, -1, -1, -1, -1, "👻", 0 },
 	{ NULL, "scratch", 0, 1, -1, 100, 50, 1200, 800, "👻", 's' },
-	{ NULL, "clipboard", 0, 1, -1, 100, 50, 1200, 800, "📎", 'c' },
+	{ NULL, "Clipse GUI", 0, 1, -1, 100, 50, 1200, 800, "📎", 'c' },
 	{ "zen", NULL, 0, 0, -1, -1, -1, -1, -1, "🌐", 0 }, 
 	{ "com.github.flxzt.rnote", NULL, 0, 0, -1,-1, -1, -1, -1, "󱦹", 0 }, 
 	{ "com.nextcloud.desktopclient.nextcloud",NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
@@ -175,7 +175,7 @@ static const char *clearclipcmd[] = { "clipse", "--clear-all", NULL };
 
 /* named scratchpads - First arg only serves to match against key in rules*/
 static const char *scratchcmd[] = { "s", "ghostty", "--title=scratch", NULL };
-static const char *clipboardcmd[] = { "c", "ghostty", "--title=clipboard", "-e", "clipse", NULL };
+static const char *clipboardcmd[] = { "c", "clipse-gui", NULL };
 
 /* scripts */
 static const char powermenu[] = "~/.local/share/scripts/power-menu.sh";
