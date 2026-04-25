@@ -2,9 +2,10 @@ CompileFlags:
   Add:
     - -std=gnu99
     - -xc
-    - -include stdint.h 
-    - -include dwl.c
-    - -I/usr/include/wlroots-0.20 
+    - -I.
+    - -I/usr/include/wlroots-0.19
     - -I/usr/include/libdrm 
     - -I/usr/include/pixman-1
+    - -DWLR_USE_UNSTABLE 
+    - -DVERSION=
 EnableSnippets: true
