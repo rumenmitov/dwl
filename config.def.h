@@ -18,7 +18,7 @@ static const unsigned int gappov           = 10; /* vert outer gap between windo
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
 static const char *fonts[]                 = {"monospace:size=10"};
-static const float rootcolor[]             = COLOR(0x222222ff);
+const float rootcolor[]             = COLOR(0x222222ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
 static const int respect_monitor_reserved_area = 0;  /* 1 to monitor center while respecting the monitor's reserved area, 0 to monitor center */
@@ -34,7 +34,7 @@ static uint32_t colors[][3]                = {
 static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 /* logging */
-static int log_level = WLR_ERROR;
+int log_level = WLR_ERROR;
 
 /* appicons */
 /* NOTE: set to 0 to set to default (whitespace) */
@@ -156,6 +156,7 @@ static const Key keys[] = {
 	/* modifier                  chain,  key                 function        argument */
 	{ MODKEY,                    -1, XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_Return,     spawn,          {.v = termcmd} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_R,              reload,         {0} },
 	{ MODKEY,                    -1, XKB_KEY_grave,      togglescratch,  {.v = scratchpadcmd } },
 	// { MODKEY,                 -1, XKB_KEY_grave,      focusortogglescratch, {.v = scratchpadcmd } },
 	// { MODKEY,                 -1, XKB_KEY_grave,      focusortogglematchingscratch, {.v = scratchpadcmd } },

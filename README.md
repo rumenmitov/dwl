@@ -53,7 +53,22 @@ version of wlroots (*you probably do*), use a [release] or a [0.x branch]. If
 you want to use the unstable development `main` branch, you need to use the git
 version of [wlroots].
 
-To enable XWayland, you should uncomment its flags in `config.mk`.
+To enable XWayland, you should uncomment its flags in `config.mk`.  
+
+To build (or hot-reload):  
+  
+```
+make
+sudo make install
+```  
+  
+If you make hot-reload changes to the bar config, you will need to stop
+slstatus for the changes to take effect:  
+  
+```
+pkill slstatus
+```  
+  
 
 ## Configuration
 

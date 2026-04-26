@@ -22,7 +22,7 @@ static const char *fonts[]                 = {
   "JetBrains Mono:size=15",
   "Noto Color Emoji:size=15",
 };
-static const float rootcolor[]             = COLOR(0x222222ff);
+const float rootcolor[]             = COLOR(0x222222ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
 static const int respect_monitor_reserved_area = 0;  /* 1 to monitor center while respecting the monitor's reserved area, 0 to monitor center */
@@ -38,7 +38,7 @@ static uint32_t colors[][3]                = {
 static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 /* logging */
-static int log_level = WLR_ERROR;
+int log_level = WLR_ERROR;
 
 /* appicons */
 /* NOTE: set to 0 to set to default (whitespace) */
@@ -192,6 +192,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_x,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    -1, XKB_KEY_Return,            spawn,          {.v = termcmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_Return,            togglescratch,  {.v = scratchcmd} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, -1, XKB_KEY_R,                 reload,         {0} },
   { MODKEY,                    XKB_KEY_x, XKB_KEY_b,          spawn,          {.v = browser} },
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_e,          spawn,          {.v = emacs} },
 	{ MODKEY,                    XKB_KEY_x, XKB_KEY_f,          spawn,          {.v = filemanager} },
