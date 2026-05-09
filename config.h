@@ -51,8 +51,8 @@ static char truncate_symbol[]         = "...";
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
 	{ "st", NULL, 0, 0, -1, -1, -1, -1, -1, "👻", 0 },
-	{ NULL, "scratch", 0, 1, -1, 100, 50, 1200, 800, "👻", 's' },
-	{ NULL, "Clipse GUI", 0, 1, -1, 100, 50, 1200, 800, "📎", 'c' },
+	{ NULL, "scratch", 0, 1, -1, 50, 100, 0.8f, 0.8f, "👻", 's' },
+	{ NULL, "Clipse GUI", 0, 1, -1, 50, 100, 0.6f, 0.8f, "📎", 'c' },
 	{ "zen", NULL, 0, 0, -1, -1, -1, -1, -1, "🌐", 0 }, 
 	{ "com.github.flxzt.rnote", NULL, 0, 0, -1,-1, -1, -1, -1, "󱦹", 0 }, 
 	{ "com.nextcloud.desktopclient.nextcloud",NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
@@ -60,7 +60,7 @@ static const Rule rules[] = {
 	{ "chromium", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
 	{ "gimp", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
 	{ "emacs", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 },
-	{ NULL, "minibuffer-float", 0, 1, -1, 150, 200, 1200, 400, NULL, 0 },    
+	{ NULL, "minibuffer-float", 0, 1, -1, 100, 300, 0.8f, 0.2f, NULL, 0 },      
 	{ "org.kde.okular", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
 	{ "org.gnome.Nautilus", NULL, 0, 0, -1, -1, -1, -1, -1, "📁", 0 }, 
 };
