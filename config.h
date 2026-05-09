@@ -59,7 +59,8 @@ static const Rule rules[] = {
 	{ "org.keepassxc.KeePassXC", NULL, 0, 0, -1, -1, -1, -1, -1, "🔑", 0 }, 
 	{ "chromium", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
 	{ "gimp", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
-	{ "emacs", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
+	{ "emacs", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 },
+	{ NULL, "minibuffer-float", 0, 1, -1, 150, 200, 1200, 400, NULL, 0 },    
 	{ "org.kde.okular", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
 	{ "org.gnome.Nautilus", NULL, 0, 0, -1, -1, -1, -1, -1, "📁", 0 }, 
 };
