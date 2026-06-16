@@ -50,7 +50,7 @@ static char truncate_symbol[]         = "...";
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	{ "st", NULL, 0, 0, -1, -1, -1, -1, -1, "👻", 0 },
+	{ "ghostty", NULL, 0, 0, -1, -1, -1, -1, -1, "👻", 0 },
 	{ NULL, "scratch", 0, 1, -1, 50, 100, 0.8f, 0.8f, "👻", 's' },
 	{ NULL, "Clipse GUI", 0, 1, -1, 50, 100, 0.6f, 0.8f, "📎", 'c' },
 	{ "zen", NULL, 0, 0, -1, -1, -1, -1, -1, "🌐", 0 }, 
@@ -161,7 +161,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "st", NULL };
+static const char *termcmd[] = { "ghostty", NULL };
 static const char *browser[] = { "zen-browser", NULL };
 static const char *menucmd[] = { "wofi", "--allow-images", "--show", "drun", NULL };
 static const char *emacs[] = { "emacsclient", "-c", NULL };
@@ -175,7 +175,7 @@ static const char *screenshotcmd[] = { "shotman", "--capture", "region", "--copy
 static const char *clearclipcmd[] = { "clipse", "--clear-all", NULL };
 
 /* named scratchpads - First arg only serves to match against key in rules*/
-static const char *scratchcmd[] = { "s", "st", "-t", "scratch", NULL };
+static const char *scratchcmd[] = { "s", "ghostty", "--title=scratch", NULL };
 static const char *clipboardcmd[] = { "c", "clipse-gui", NULL };
 
 /* scripts */
