@@ -162,7 +162,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[] = { "ghostty", NULL };
-static const char *browser[] = { "zen-browser", NULL };
+static const char *browser[] = { "flatpak", "run", "app.zen_browser.zen", NULL };
 static const char *menucmd[] = { "wofi", "--allow-images", "--show", "drun", NULL };
 static const char *emacs[] = { "emacsclient", "-c", NULL };
 static const char *filemanager[] = { "thunar", NULL };
