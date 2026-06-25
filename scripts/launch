@@ -2,12 +2,12 @@
 
 # DWL startup script
 
-wlr-randr --output DP-1 --pos -1920,0 # force monitor to the left
+wlr-randr --output DP-1 --left-of eDP-1
 dbus-daemon --session &
 eval $(dbus-launch &) && export DBUS_SESSION_BUS_ADDRESS &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
-clipse -listen
+~/.go/bin/clipse -listen
 awww-daemon &
 emacs --daemon
 otd-daemon &
