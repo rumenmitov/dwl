@@ -3,8 +3,7 @@
 # DWL startup script
 
 wlr-randr --output DP-1 --left-of eDP-1
-dbus-daemon --session &
-eval $(dbus-launch &) && export DBUS_SESSION_BUS_ADDRESS &
+dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
 ~/.go/bin/clipse -listen
