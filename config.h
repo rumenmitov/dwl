@@ -56,7 +56,7 @@ static const Rule rules[] = {
 	{ "zen", NULL, 0, 0, -1, -1, -1, -1, -1, "🌐", 0 }, 
 	{ "com.github.flxzt.rnote", NULL, 0, 0, -1,-1, -1, -1, -1, "󱦹", 0 }, 
 	{ "com.nextcloud.desktopclient.nextcloud",NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
-	{ "org.keepassxc.KeePassXC", NULL, 0, 0, -1, -1, -1, -1, -1, "🔑", 0 }, 
+	{ "org.keepassxc.KeePassXC", NULL, 1 << 8, 0, -1, -1, -1, -1, -1, "🔑", 0 }, 
 	{ "chromium", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
 	{ "gimp", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 }, 
 	{ "emacs", NULL, 0, 0, -1, -1, -1, -1, -1, "", 0 },
