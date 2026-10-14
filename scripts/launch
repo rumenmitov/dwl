@@ -3,11 +3,10 @@
 # DWL startup script
 
 wlr-randr --output DP-1 --left-of eDP-1
-dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
+dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE
 keepassxc &
 dunst &
 ~/.go/bin/clipse -listen
 awww-daemon &
 emacs --daemon
 otd-daemon &
-exec ~/.config/dwl/scripts/screenshare-fix.sh &
